@@ -7,7 +7,7 @@ const Player = () => {
 
   const {id} = useParams();
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const [apiData, setApiData] = useState({
     name: "",
