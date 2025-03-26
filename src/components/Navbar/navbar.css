@@ -61,6 +61,28 @@
     font-size: 13px;
     cursor: pointer;
 }
+.nav-btn {
+    padding: 8px 16px;
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+    border-radius: 4px;
+    margin-left: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+.nav-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+.nav-btn-signup {
+    background-color: red;
+    border-color: red;
+    color: white;
+}
+.nav-btn-signup:hover {
+    background-color: darkred;
+}
 .navbar-profile:hover .dropdown{
     display: block;
 }

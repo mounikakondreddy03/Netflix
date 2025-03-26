@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const firebaseConfig = {
@@ -15,6 +16,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
+
 
 const signup = async (name, email, password, navigate) => {
     try {
@@ -55,12 +57,14 @@ const login = async (email, password, navigate) => {
 const guestLogin = async (navigate) => {
     const guestEmail = "guest123@gmail.com"
     const guestPassword = "Gues@t12345"
+    
 
     try {
+        console.log("guest login function is triggered")
         const res = await signInWithEmailAndPassword(auth, guestEmail, guestPassword)
-        console.log("Guest login successfully", res.user);
+        console.log("Guest login successfully",res);
         alert("Logged in as Guest");
-        navigate("/Home");
+        // navigate("/Home");
     } catch (error) {
         console.error("Error during guest login:", error.message);
         toast.error(error.code.split('/')[1].split('-').join(" "));

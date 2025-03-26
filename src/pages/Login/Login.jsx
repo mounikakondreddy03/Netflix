@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./login.css";
 import logo from "../../assets/logo.png";
-import { login, signup, guestLogin } from "../../firebase.js";
+import { login, signup } from "../../firebase.js";
 import netflix_spinner from '../../assets/netflix_spinner.gif'
 
 const Login = () => {
@@ -18,18 +18,22 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
     if (signState === "Sign In") {
-      await login(email, password, navigate);
+      if(email===""){
+        await login("guest123@gmail.com", "Guest@12345", navigate);
+      }else{
+        await login(email, password, navigate);
+      }
+      
     } else {
       await signup(name, email, password, navigate);
     }
     setLoading(false);
   };
 
-
   return (
     loading ? <div className="login-spinner">
       <img src={netflix_spinner} alt="" />
-    </div> :
+    </div> : 
     <div className="login">
       <img src={logo} className="login-logo" alt="logo" />
       <div className="login-form">
@@ -44,7 +48,7 @@ const Login = () => {
           <button onClick={userAuth}>{signState}</button>
 
           {signState === "Sign In" && (
-            <button onClick={() => guestLogin(navigate)} className="guest-login">Guest Login</button>
+            <button onClick={userAuth} className="guest-login">Guest Login</button>
           )}
 
           <div className="form-help">
